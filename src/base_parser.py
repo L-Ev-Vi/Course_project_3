@@ -6,9 +6,9 @@ class Parser(ABC):
     """Абстрактный класс для работы с API сервисами"""
 
     @abstractmethod
-    def __connecting_to_api(self) -> list[Any]:
+    def connecting_to_api(self) -> list[Any]:
         """Метод подключения к API в абстрактном классе"""
 
     @abstractmethod
-    def get_vacancies(self, keyword: str) -> Any:
+    def get_vacancies(self, keyword: str) -> list:
         """Метод получения данных в абстрактном классе"""
