@@ -71,7 +71,7 @@ class SearchBy(HH):
                             "salary_to": None,
                             "salary_currency": None,
                             "url_vacancy": res["alternate_url"],
-                            "description": res["snippet"]["requirement"]
+                            "description": res["snippet"]["requirement"],
                         }
                     )
         except TypeError:

@@ -16,10 +16,10 @@ class HH(Parser):
         self._params = {"page": 0, "per_page": 0, "text": "", "period": 7, "search_field": "company_name"}
         self._vacancies = []
 
-    def connecting_to_api(self) -> list[Any]:
+    def connecting_to_api(self) -> list:
         """Метод подключения к API"""
-        pass
+        return []
 
     def get_vacancies(self, keyword: str) -> list:
         """Метод получения данных"""
-        pass
+        return []
