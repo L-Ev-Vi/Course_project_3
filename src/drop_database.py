@@ -28,4 +28,4 @@ def drop_database(database_name: str) -> None:
     except Exception as e:
         print(e)
     else:
-        print(f"Завершение сеанса.\n" f"База данных с именем {database_name} удалена!")
+        print(f"Завершение сеанса.\n База данных с именем {database_name} удалена!")

@@ -4,13 +4,13 @@ from src.db_companies_and_vacancies import CompaniesAndVacancies
 
 
 class DBManager(CompaniesAndVacancies):
-    """Клас подключения к БД в PostgreSQL"""
+    """Класс подключения к БД в PostgreSQL"""
 
     def get_companies_and_vacancies_count(self) -> None:
         """Метод выполняет SQL запрос к базе данных, и возвращает список всех компаний и количество вакансий у каждой
         компании."""
         result = ["company_name: number_vacancies"]
-        with psycopg2.connect(**self.conn_params) as conn:
+        with psycopg2.connect(**self._conn_params) as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     "SELECT company_name, COUNT(*) AS number_vacancies FROM companies "
@@ -27,7 +27,7 @@ class DBManager(CompaniesAndVacancies):
         """Метод выполняет SQL запрос к базе данных и возвращает список всех вакансий с указанием названия компании,
         названия вакансии и зарплаты и ссылку на вакансию."""
         result = []
-        with psycopg2.connect(**self.conn_params) as conn:
+        with psycopg2.connect(**self._conn_params) as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     "SELECT company_name, vacancy_name, salary_from, salary_to, url_vacancy FROM companies "
@@ -54,7 +54,7 @@ class DBManager(CompaniesAndVacancies):
 
     def get_avg_salary(self) -> None:
         """Метод выполняет SQL запрос к базе данных и возвращает среднюю зарплату по всем вакансиям."""
-        with psycopg2.connect(**self.conn_params) as conn:
+        with psycopg2.connect(**self._conn_params) as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     "SELECT (AVG(salary_to) + AVG(salary_from)) / 2 AS salary_avg FROM vacancies "
@@ -69,7 +69,7 @@ class DBManager(CompaniesAndVacancies):
         """Метод выполняет SQL запрос к базе данных и возвращает список всех вакансий,
         у которых зарплата выше средней по всем вакансиям."""
         result = []
-        with psycopg2.connect(**self.conn_params) as conn:
+        with psycopg2.connect(**self._conn_params) as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     "SELECT company_name, vacancy_name, salary_from, salary_to, url_vacancy FROM companies "
@@ -101,7 +101,7 @@ class DBManager(CompaniesAndVacancies):
         в названии которых содержатся переданные в метод слова."""
         result = []
         vacancies = []
-        with psycopg2.connect(**self.conn_params) as conn:
+        with psycopg2.connect(**self._conn_params) as conn:
             with conn.cursor() as cur:
                 words = keyword.split()
                 for word in words:

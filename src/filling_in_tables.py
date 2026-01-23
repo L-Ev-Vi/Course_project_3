@@ -11,7 +11,7 @@ class FillingInTables(CompaniesAndVacancies):
     def creating_tables(self) -> None:
         """Метод создания таблиц 'companies' и 'vacancies' в базе данных."""
         try:
-            with psycopg2.connect(**self.conn_params) as conn:
+            with psycopg2.connect(**self._conn_params) as conn:
                 with conn.cursor() as cur:
                     cur.execute(
                         "CREATE TABLE companies"
@@ -36,7 +36,7 @@ class FillingInTables(CompaniesAndVacancies):
     def filling_in_table_companies(self) -> None:
         """Метод заполнения таблицы 'companies' в базе данных."""
         try:
-            with psycopg2.connect(**self.conn_params) as conn:
+            with psycopg2.connect(**self._conn_params) as conn:
                 with conn.cursor() as cur:
                     for i, row in enumerate(LIST_COMPANIES):
                         cur.execute("INSERT INTO companies VALUES (%s, %s)", (i + 1, row))
@@ -49,7 +49,7 @@ class FillingInTables(CompaniesAndVacancies):
     def filling_in_table_vacancies(self) -> None:
         """Метод заполнения таблицы 'vacancies' в базе данных."""
         try:
-            with psycopg2.connect(**self.conn_params) as conn:
+            with psycopg2.connect(**self._conn_params) as conn:
                 with conn.cursor() as cur:
                     parameters = (
                         "company_id, vacancy_name, salary_from, salary_to, salary_currency, "

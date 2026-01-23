@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 # companies_and_vacancies
 
+
 def creating_database(database_name: str) -> None:
     """Функция для создания базы данных в PostgreSQL. Функция выполняет подключение к базе данных Postgre,
     и выполняет запрос на создание БД с заданным именем 'database_name'."""
